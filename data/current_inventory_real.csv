@@ -1,0 +1,20 @@
+product_id,product_name,current_stock,sales_last_30d,avg_daily_sales,days_until_stockout,stock_status,last_updated
+aca2eb7d00ea1a7b8ebd4e68314663af,Modern Furniture Piece,140,3,1.0,127.3,High Stock,2018-08-27
+99a4788cb24856965c36a24e339b6058,Premium Bedding Set,155,8,1.6,91.2,High Stock,2018-08-27
+422879e10f46682990de24d770e7f83d,Garden Tool Set,147,7,1.17,116.1,High Stock,2018-08-27
+389d119b48cf3043d311335e499d9c6b,Garden Tool Set,100,13,2.17,44.1,High Stock,2018-08-27
+368c6c730842d78016ad823897a372db,Garden Tool Set,152,6,1.0,138.2,High Stock,2018-08-27
+53759a2ecddad2bb87a079a1f1519f73,Garden Tool Set,105,7,1.75,56.8,High Stock,2018-08-27
+d1c427060a0f73f6b889a5c7c61f2ac4,Computer Accessory Bundle,101,11,1.22,76.4,High Stock,2018-08-27
+53b36df67ebb7c41585e8d54d6772e08,Designer Watch,246,2,1.0,223.6,High Stock,2018-08-27
+154e7e31ebfa092203795c972e5804a6,Beauty Care Kit,118,3,1.0,107.3,High Stock,2018-08-27
+3dd2a17168ec895c781a9191c1e95ad7,Computer Accessory Bundle,125,5,1.0,113.6,High Stock,2018-08-27
+2b4609f8948be18874494203496bc318,Beauty Care Kit,180,8,1.0,163.6,High Stock,2018-08-27
+7c1bd920dbdf22470b68bde975dd3ccf,Beauty Care Kit,121,3,1.0,110.0,High Stock,2018-08-27
+a62e25e09e05e6faf31d90c6ec1aa3d1,Designer Watch,209,8,1.14,168.2,High Stock,2018-08-27
+5a848e4ab52fd5445cdc07aab1c40e48,Product Product,208,4,1.0,189.1,High Stock,2018-08-27
+bb50f2e236e5eea0100680137654686c,Beauty Care Kit,123,35,2.06,57.0,High Stock,2018-08-27
+e0d64dcfaa3b6db5c54ca298ae101d05,Designer Watch,219,13,1.3,156.4,High Stock,2018-08-27
+e53e557d5a159f5aa2c5e995dfdf244b,Computer Accessory Bundle,191,2,1.0,173.6,High Stock,2018-08-27
+b532349fe46b38fbc7bb3914c1bdae07,Modern Furniture Piece,176,18,2.57,65.9,High Stock,2018-08-27
+35afc973633aaeb6b877ff57b2793310,Home Confort Product,128,5,1.0,116.4,High Stock,2018-08-27
