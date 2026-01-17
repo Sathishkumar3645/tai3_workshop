@@ -8,7 +8,7 @@ class Settings(BaseSettings):
     MODEL_NAME: str = "sentence-transformers/all-mpnet-base-v2"
     vectorDBPath: str = "app/utils/vectorDB"
     product_data_path: str = "data/product_catalog_real.csv"
-    OPENAI_MODEL_NAME: str = "gpt-4o-mini"
+    OPENAI_MODEL_NAME: str = "gpt-4o-mini" #"gpt-5-mini" 
     GROQ_MODEL_NAME: str = "llama-3.3-70b-versatile"
     TOOL_CHOICE: str = "auto"
     MAX_TOKENS: int = 1024
