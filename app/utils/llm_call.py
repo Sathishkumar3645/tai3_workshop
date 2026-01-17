@@ -75,7 +75,7 @@ class LLMTrigger:
                         messages=messages,
                         tools=self.tools if self.tools else None,
                         tool_choice="auto" if self.tools else None,
-                        max_tokens=getattr(self.configData, 'MAX_TOKENS', 1024)
+                        # max_tokens=getattr(self.configData, 'MAX_TOKENS', 1024)
                     )
                 except Exception as api_error:
                     if "tool" in str(api_error).lower() and retry_count < max_retries:

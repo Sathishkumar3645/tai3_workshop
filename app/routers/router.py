@@ -45,7 +45,7 @@ def chat(request: ChatRequest):
     """
     global conversation_history
     try:
-        provider = "groq"
+        provider = "openai"
         user_type = "general"
         response = run_bot(provider, None, request.user_query, user_type, conversation_history)
         logger.info(f"Chat response generated for query: {request.user_query[:50]}...")
