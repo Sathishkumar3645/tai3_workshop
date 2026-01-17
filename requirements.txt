@@ -10,3 +10,5 @@ langchain_community
 langchain
 groq
 openai
+streamlit
+requests
