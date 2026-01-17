@@ -7,7 +7,7 @@ from app.core.config import settings
 logger = logging.getLogger(__name__)
 
 
-def retrieveDocument(query: str) -> str:
+def retrieve_document(query: str) -> str:
     """Retrieve relevant documents from Vector DB based on user query.
     
     Args:
