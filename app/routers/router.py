@@ -8,7 +8,6 @@ logger = logging.getLogger(__name__)
 
 router = APIRouter()
 
-# In-memory conversation history (can be replaced with database for production)
 conversation_history = []
 
 @router.get("/", tags=["Root"])

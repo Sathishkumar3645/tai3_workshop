@@ -32,31 +32,31 @@ def _generate_recommendation(prediction, confidence, quantity, current_stock,
         if prediction == 'High Stock':
             if confidence >= 0.8:
                 if can_fulfill:
-                    return f"✅ {product_name} is readily available with HIGH STOCK levels. We have {current_stock} units in stock, and you're requesting {quantity}. You can safely purchase now. Expected availability: {days_until_stockout:.0f}+ days."
+                    return f"{product_name} is readily available with HIGH STOCK levels. We have {current_stock} units in stock, and you're requesting {quantity}. You can safely purchase now. Expected availability: {days_until_stockout:.0f}+ days."
                 else:
                     shortage = quantity - current_stock
-                    return f"⚠️ {product_name} has HIGH STOCK overall ({current_stock} units), but you're requesting {quantity} units which exceeds current inventory. We recommend ordering {current_stock} units now and placing a backorder for the remaining {shortage} units."
+                    return f"{product_name} has HIGH STOCK overall ({current_stock} units), but you're requesting {quantity} units which exceeds current inventory. We recommend ordering {current_stock} units now and placing a backorder for the remaining {shortage} units."
             else:
-                return f"✅ {product_name} appears to be in stock (confidence: {confidence:.0%}). Current inventory: {current_stock} units. Safe to proceed with your order of {quantity} unit(s)."
+                return f"{product_name} appears to be in stock (confidence: {confidence:.0%}). Current inventory: {current_stock} units. Safe to proceed with your order of {quantity} unit(s)."
         
         elif prediction == 'Medium Stock':
             if confidence >= 0.8:
                 if can_fulfill:
-                    return f"⚠️ {product_name} has MEDIUM STOCK levels. Current inventory: {current_stock} units (you need {quantity}). Recent demand is moderate ({avg_daily_sales:.1f} units/day). We recommend purchasing soon as stock may run low in {days_until_stockout:.0f} days. Consider ordering within the next few days."
+                    return f"{product_name} has MEDIUM STOCK levels. Current inventory: {current_stock} units (you need {quantity}). Recent demand is moderate ({avg_daily_sales:.1f} units/day). We recommend purchasing soon as stock may run low in {days_until_stockout:.0f} days. Consider ordering within the next few days."
                 else:
-                    return f"⚠️ {product_name} has MEDIUM STOCK but cannot fully fulfill your order of {quantity} units (only {current_stock} available). We recommend: 1) Order {current_stock} units now, 2) Check back in 3-5 days for restock, or 3) Consider a similar alternative product."
+                    return f"{product_name} has MEDIUM STOCK but cannot fully fulfill your order of {quantity} units (only {current_stock} available). We recommend: 1) Order {current_stock} units now, 2) Check back in 3-5 days for restock, or 3) Consider a similar alternative product."
             else:
-                return f"⚠️ {product_name} has MEDIUM STOCK levels (confidence: {confidence:.0%}). Inventory status is uncertain. We recommend checking with our support team before placing a large order of {quantity} units."
+                return f"{product_name} has MEDIUM STOCK levels (confidence: {confidence:.0%}). Inventory status is uncertain. We recommend checking with our support team before placing a large order of {quantity} units."
         
         else:  # Low Stock
             if confidence >= 0.8:
                 if can_fulfill and quantity <= 3:
-                    return f"🔴 URGENT: {product_name} is experiencing LOW STOCK. Only {current_stock} units available, and demand is high ({avg_daily_sales:.1f} units/day). Stock may run out in {days_until_stockout:.0f} days. Your order of {quantity} unit(s) can be fulfilled, but we STRONGLY recommend purchasing immediately to ensure availability."
+                    return f"URGENT: {product_name} is experiencing LOW STOCK. Only {current_stock} units available, and demand is high ({avg_daily_sales:.1f} units/day). Stock may run out in {days_until_stockout:.0f} days. Your order of {quantity} unit(s) can be fulfilled, but we STRONGLY recommend purchasing immediately to ensure availability."
                 else:
                     fulfillment_status = 'cannot be fully fulfilled' if not can_fulfill else 'would deplete most of our inventory'
-                    return f"🔴 ALERT: {product_name} is in LOW STOCK ({current_stock} units) and experiencing high demand. Your request of {quantity} units {fulfillment_status}. Recommendations: 1) Purchase immediately if critical, 2) Consider backorder (3-7 day wait), 3) Check alternative products, or 4) Contact sales for bulk order options."
+                    return f"ALERT: {product_name} is in LOW STOCK ({current_stock} units) and experiencing high demand. Your request of {quantity} units {fulfillment_status}. Recommendations: 1) Purchase immediately if critical, 2) Consider backorder (3-7 day wait), 3) Check alternative products, or 4) Contact sales for bulk order options."
             else:
-                return f"🔴 {product_name} may be out of stock or very low inventory (confidence: {confidence:.0%}). Current status uncertain. We strongly recommend contacting our sales team before placing your order of {quantity} units to verify availability and delivery timeline."
+                return f"{product_name} may be out of stock or very low inventory (confidence: {confidence:.0%}). Current status uncertain. We strongly recommend contacting our sales team before placing your order of {quantity} units to verify availability and delivery timeline."
     
     except Exception as e:
         # Fallback recommendation if anything fails
@@ -103,7 +103,6 @@ def check_availability(product_name: str, quantity: int):
     quantity_description = "Number of items to check availability for the product give by user. Need to ask user every time"
 
     try:
-        # CRITICAL: Convert quantity to int (LLM may pass it as string)
         quantity = int(quantity) #if quantity else 1
         product_name = str(product_name).strip()
         
@@ -166,7 +165,7 @@ def check_availability(product_name: str, quantity: int):
         # STEP 3: Get Recent Sales Data and Engineer Features
         # ========================================================================
         
-        print(f"\n📊 Analyzing recent sales patterns...")
+        print(f"Analyzing recent sales patterns...")
         
         # Get product sales history
         product_sales = sales_df[sales_df['product_id'] == product_id].copy()
@@ -201,7 +200,7 @@ def check_availability(product_name: str, quantity: int):
         # STEP 4: Engineer Features (Same as Training)
         # ========================================================================
         
-        print(f"🔧 Engineering features...")
+        print(f"Engineering features...")
         
         features = {}
         
@@ -264,13 +263,13 @@ def check_availability(product_name: str, quantity: int):
             else:
                 final_features[fname] = 0  # Default value for missing features
         
-        print(f"✅ Features engineered")
+        print(f"Features engineered")
         
         # ========================================================================
         # STEP 5: Make ML Prediction
         # ========================================================================
         
-        print(f"\n🤖 Running ML prediction...")
+        print(f"Running ML prediction...")
         
         # Create feature vector using final_features (ensure correct order)
         X = pd.DataFrame([final_features])[feature_names]
@@ -292,13 +291,13 @@ def check_availability(product_name: str, quantity: int):
         
         confidence = float(probabilities.max())
         
-        print(f"✅ Prediction: {prediction} (Confidence: {confidence:.2%})")
+        print(f"Prediction: {prediction} (Confidence: {confidence:.2%})")
         
         # ========================================================================
         # STEP 6: Get Current Inventory Status
         # ========================================================================
         
-        print(f"\n📦 Checking current inventory...")
+        print(f"Checking current inventory...")
         
         inventory_info = inventory_df[inventory_df['product_id'] == product_id]
         
@@ -326,7 +325,7 @@ def check_availability(product_name: str, quantity: int):
         # STEP 7: Generate Recommendation
         # ========================================================================
         
-        print(f"\n💡 Generating recommendation...")
+        print(f"Generating recommendation...")
         
         recommendation = _generate_recommendation(
             prediction=prediction,
@@ -338,7 +337,7 @@ def check_availability(product_name: str, quantity: int):
             product_name=full_product_name
         )
         
-        print(f"✅ Recommendation generated: {recommendation[:100]}...")
+        print(f"Recommendation generated: {recommendation[:100]}...")
         
         # ========================================================================
         # STEP 8: Build Response
@@ -375,7 +374,7 @@ def check_availability(product_name: str, quantity: int):
         }
         
         print(f"\n{'='*70}")
-        print(f"✅ AVAILABILITY CHECK COMPLETE")
+        print(f"AVAILABILITY CHECK COMPLETE")
         print(f"{'='*70}")
         print(f"Status: {prediction}")
         print(f"Recommendation: {recommendation}")

@@ -15,7 +15,7 @@ class VectorDBGenerator:
         df = pd.read_csv(self.product_data_path, usecols=['product_name', 'category','price' ,'description', 'specifications', 'order_count'])
         for row in df.iterrows():
             self.chunks.append(f"""Product Name: {row[1]['product_name']}\n Category: {row[1]['category']}\n Price: {row[1]['price']}\n Description: {row[1]['description']}\n Specifications: {row[1]['specifications']}\n Order Count: {row[1]['order_count']}""")
-        self.chunks.append(f"""Following are the available products in system:\n {list(set(df['product_name']))}""")
+        self.chunks.append(f"""We have wide range of products available in the system, Following are the available products in the system:\n {list(set(df['product_name']))} this used to give user an idea about the product catalog.""")
         return self.chunks
     
     def save_to_chroma(self, chunks):
